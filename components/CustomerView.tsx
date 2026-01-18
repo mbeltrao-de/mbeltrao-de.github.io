@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Apartment, Photo360 } from '../types';
-import { getApartments } from '../services/storage';
-import Viewer360 from './Viewer360';
-import FloorPlanDesigner from './FloorPlanDesigner';
+import { Apartment, Photo360 } from '../types.ts';
+import { getApartments } from '../services/storage.ts';
+import Viewer360 from './Viewer360.tsx';
+import FloorPlanDesigner from './FloorPlanDesigner.tsx';
 import { 
   ChevronLeft, 
   MapPin, 
@@ -43,7 +43,6 @@ const CustomerView: React.FC = () => {
 
   const selectedApt = apartments.find(a => a.id === selectedAptId);
 
-  // Auto-initialize first photo when apt is selected
   useEffect(() => {
     if (selectedApt && selectedApt.photos.length > 0 && !activePhoto) {
       setActivePhoto(selectedApt.photos[0]);
@@ -95,7 +94,6 @@ const CustomerView: React.FC = () => {
     return (
       <div className="fixed inset-0 bg-black flex flex-col overflow-hidden animate-in fade-in duration-500">
         
-        {/* Floating Top Bar - Hidden in Clean View */}
         <div className={`absolute top-0 left-0 right-0 z-30 p-4 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 pointer-events-none transition-all duration-700 ${isCleanView ? 'opacity-0 -translate-y-12' : 'opacity-100 translate-y-0'}`}>
           <button 
             onClick={() => { setSelectedAptId(null); setActivePhoto(null); setActiveHotspotId(undefined); setIsCleanView(false); }}
@@ -112,7 +110,6 @@ const CustomerView: React.FC = () => {
           </div>
         </div>
 
-        {/* Clean View Toggle - Top Right */}
         <div className="absolute top-4 md:top-6 right-4 md:right-6 z-[60] pointer-events-none flex items-center gap-2">
           {isCleanView ? (
             <button 
@@ -132,7 +129,6 @@ const CustomerView: React.FC = () => {
           )}
         </div>
 
-        {/* Main 360 Viewport - Orientation is preserved by keeping the same activePhoto.id key */}
         <div className="absolute inset-0 z-0">
           {activePhoto ? (
             <Viewer360 
@@ -149,15 +145,12 @@ const CustomerView: React.FC = () => {
           )}
         </div>
 
-        {/* HUD Controls - Integrated Row */}
         <div className={`absolute left-0 right-0 z-20 transition-all duration-700 pointer-events-none ${isSheetOpen ? 'opacity-0 translate-y-20' : 'bottom-0 opacity-100 translate-y-0'}`}>
           <div className={`flex flex-col items-center gap-4 transition-all duration-700 ${isCleanView ? 'pb-8 md:pb-10' : 'pb-16 md:pb-20'}`}>
             
-            {/* Control Strip (FOV + Furniture + Time) */}
             <div className="flex flex-col md:flex-row items-center gap-3 pointer-events-auto">
               <div className="glass-card p-1.5 rounded-[20px] flex items-center gap-4 shadow-2xl border border-white/10">
                 
-                {/* FOV Selection (Left side, only text deg, hidden in clean view) */}
                 {!isCleanView && (
                   <div className="flex items-center gap-1 border-r border-white/10 pr-4">
                     {[60, 90, 120].map((val) => (
@@ -172,7 +165,6 @@ const CustomerView: React.FC = () => {
                   </div>
                 )}
 
-                {/* State Toggles (Middle, icons only) */}
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-1.5">
                     <button 
@@ -213,7 +205,6 @@ const CustomerView: React.FC = () => {
               </div>
             </div>
 
-            {/* Horizontal Spot Selector Menu - Apple-inspired smooth slider */}
             <div className="w-full max-w-2xl px-6 pointer-events-auto">
               <div 
                 ref={spotMenuRef}
@@ -244,11 +235,9 @@ const CustomerView: React.FC = () => {
           </div>
         </div>
 
-        {/* Responsive Drawer / Sidebar */}
         <div 
           className={`fixed inset-x-0 bottom-0 z-40 bg-white shadow-[0_-20px_60px_rgba(0,0,0,0.4)] transition-all duration-700 cubic-bezier(0.2, 0.8, 0.2, 1) rounded-t-[40px] md:rounded-none md:relative md:inset-auto md:w-96 md:h-full md:translate-y-0 ${isCleanView ? 'translate-y-full opacity-0' : (isSheetOpen ? 'translate-y-0 h-[80vh] opacity-100' : 'translate-y-[calc(80vh-48px)] md:translate-y-0 h-[80vh] opacity-100')}`}
         >
-          {/* Mobile Handle / Header */}
           <div 
             onClick={() => setIsSheetOpen(!isSheetOpen)}
             className="h-12 flex flex-col items-center justify-center cursor-pointer md:hidden border-b border-slate-50 bg-white rounded-t-[40px] px-8"

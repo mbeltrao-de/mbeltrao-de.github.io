@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
-import { ViewMode } from './types';
-import AdminView from './components/AdminView';
-import CustomerView from './components/CustomerView';
+import { ViewMode } from './types.ts';
+import AdminView from './components/AdminView.tsx';
+import CustomerView from './components/CustomerView.tsx';
 import { User, ShieldCheck } from 'lucide-react';
 
 const App: React.FC = () => {

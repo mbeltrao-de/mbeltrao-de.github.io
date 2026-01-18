@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
-import { Apartment, Photo360, Point, Hotspot } from '../types';
-import { getApartments, saveApartments } from '../services/storage';
+import { Apartment, Photo360, Point, Hotspot } from '../types.ts';
+import { getApartments, saveApartments } from '../services/storage.ts';
 import { Plus, Save, Trash2, Home, Camera, Image as ImageIcon, Map, CheckCircle2, AlertCircle, Sofa, Eraser, Moon, Sun } from 'lucide-react';
-import FloorPlanDesigner from './FloorPlanDesigner';
+import FloorPlanDesigner from './FloorPlanDesigner.tsx';
 
 const AdminView: React.FC = () => {
   const [apartments, setApartments] = useState<Apartment[]>([]);
@@ -127,7 +127,7 @@ const AdminView: React.FC = () => {
              <Save size={18} />}
             {saveStatus === 'saving' ? 'Saving...' : 
              saveStatus === 'success' ? 'Saved Successfully' : 
-             saveStatus === 'error' ? 'Save Failed' : 'Save All Changes'}
+             status === 'error' ? 'Save Failed' : 'Save All Changes'}
           </button>
         </div>
       </div>
