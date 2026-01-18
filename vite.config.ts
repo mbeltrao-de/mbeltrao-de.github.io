@@ -2,12 +2,18 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: './', // Ensures assets are loaded correctly on GitHub Pages
   server: {
     port: 3000
   },
   build: {
-    target: 'esnext'
+    target: 'esnext',
+    outDir: 'dist',
+    assetsDir: 'assets',
+    minify: 'terser',
+    sourcemap: false
   }
 });
