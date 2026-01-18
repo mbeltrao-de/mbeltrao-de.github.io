@@ -1,0 +1,7 @@
+{
+  "name": "V-Tour Estates",
+  "description": "A luxury real estate platform featuring immersive 360-degree virtual tours, custom 2D floor plan mapping, and an integrated administrative dashboard for property management.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
