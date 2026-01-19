@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect, useRef } from 'react';
-import { Apartment, Photo360 } from '../types.ts';
-import { getApartments } from '../services/storage.ts';
-import Viewer360 from './Viewer360.tsx';
-import FloorPlanDesigner from './FloorPlanDesigner.tsx';
+import { Apartment, Photo360 } from '../types';
+import { getApartments } from '../services/storage';
+import Viewer360 from './Viewer360';
+import FloorPlanDesigner from './FloorPlanDesigner';
 import { 
   ChevronLeft, 
   MapPin, 
