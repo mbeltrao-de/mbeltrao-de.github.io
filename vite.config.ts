@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // Change this to match your repository name exactly
+  // This must match your repository name exactly for GitHub Pages
   base: '/virtual-tour/', 
   server: {
     port: 3000
